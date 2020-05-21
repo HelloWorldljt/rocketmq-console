@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.apache.rocketmq.console.dao.TroubleMsgMapper">
+    <resultMap type="org.apache.rocketmq.console.model.TroubleMsg" id="troubleMsg">
+        <id column="id" property="id"/>
+        <result column="msg_id" property="msgId"/>
+        <result column="type" property="type"/>
+        <result column="msg_property" property="msgProperty"/>
+        <result column="topic" property="topic"/>
+        <result column="msg_body" property="msgBody"/>
+        <result column="send_time" property="sendTime"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <insert id="insert" useGeneratedKeys="true" keyColumn="id">
+        insert into trouble_msg(
+                                id,
+                                msg_id,
+                                type,
+                                topic,
+                                msg_property,
+                                msg_body,
+                                send_time,
+                                status,
+                                create_time,
+                                update_time)
+                                VALUES
+                                       (
+                                        #{id},
+                                        #{msgId},
+                                        #{type},
+                                        #{topic},
+                                        #{msgProperty},
+                                        #{msgBody},
+                                        #{sendTime},
+                                        #{status},
+                                        #{createTime},
+                                        #{updateTime}
+                                                            )
+    </insert>
+    <insert id="batchInsert" useGeneratedKeys="true" parameterType="java.util.List">
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT
+            LAST_INSERT_ID()
+        </selectKey>
+        insert into trouble_msg(
+        id,
+        msg_id,
+        type,
+        topic,
+        msg_property,
+        msg_body,
+        send_time,
+        status,
+        create_time,
+        update_time)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (
+            #{item.id},
+            #{item.msgId},
+            #{item.type},
+            #{item.topic},
+            #{item.msgProperty},
+            #{item.msgBody},
+            #{item.sendTime},
+            #{item.status},
+            #{item.createTime},
+            #{item.updateTime}
+            )
+        </foreach>
+    </insert>
+    <select id="queryIfExist" resultType="java.lang.Integer">
+        select count(1) from trouble_msg where msg_id=#{msgId} and topic=#{topic}
+    </select>
+
+
+</mapper> 

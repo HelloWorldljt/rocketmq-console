@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 允许 JDBC 支持生成的键。需要适合的驱动 -->
+		<setting name="useGeneratedKeys" value="true" />
+		<!-- 设置超时时间，它决定驱动等待一个数据库响应的时间。 -->
+		<setting name="defaultStatementTimeout" value="20000" />
+		<!-- 自动驼峰命名转换 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!--输入sql到控制台，用于调试-->
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+
+
+
+	<typeHandlers>
+		<typeHandler javaType="org.apache.rocketmq.console.num.TroubleMsgStatus" handler="com.xiangshang360.middleware.sdk.handler.MybatisEnumHandler" />
+		<typeHandler javaType="org.apache.rocketmq.console.num.MsgType" handler="com.xiangshang360.middleware.sdk.handler.MybatisEnumHandler" />
+	</typeHandlers>
+</configuration>
