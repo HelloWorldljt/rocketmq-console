@@ -1,8 +1,7 @@
 package org.apache.rocketmq.console.num;
 
-import com.xiangshang360.middleware.sdk.serial.IntEnumInter;
 
-public enum MsgType implements IntEnumInter<MsgType> {
+public enum MsgType{
 
     /**
      * 死信
@@ -23,7 +22,6 @@ public enum MsgType implements IntEnumInter<MsgType> {
     }
 
 
-    @Override
     public int intValue() {
         return this.val;
     }

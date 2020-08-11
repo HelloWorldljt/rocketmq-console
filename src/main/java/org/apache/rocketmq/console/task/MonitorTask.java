@@ -16,8 +16,6 @@
  */
 package org.apache.rocketmq.console.task;
 
-import com.xiangshang.elasticjob.lite.starter.job.AbstractSimpleJob;
-import io.elasticjob.lite.api.ShardingContext;
 import org.apache.rocketmq.console.model.ConsumerMonitorConfig;
 import org.apache.rocketmq.console.model.GroupConsumeInfo;
 import org.apache.rocketmq.console.service.ConsumerService;
@@ -25,6 +23,7 @@ import org.apache.rocketmq.console.service.MonitorService;
 import org.apache.rocketmq.console.util.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -36,7 +35,7 @@ import java.util.Map;
  * @author duanz
  */
 @Component
-public class MonitorTask extends AbstractSimpleJob {
+public class MonitorTask{
     private Logger logger = LoggerFactory.getLogger(MonitorTask.class);
 
     @Resource
@@ -45,8 +44,8 @@ public class MonitorTask extends AbstractSimpleJob {
     @Resource
     private ConsumerService consumerService;
 
-    @Override
-    public void doTask(ShardingContext content) {
+    @Scheduled(cron = "* * * * * ?")
+    public void doTask() {
         for (Map.Entry<String, ConsumerMonitorConfig> configEntry : monitorService.queryConsumerMonitorConfig().entrySet()) {
             GroupConsumeInfo consumeInfo = consumerService.queryGroup(configEntry.getKey());
             if (consumeInfo.getCount() < configEntry.getValue().getMinCount() || consumeInfo.getDiffTotal() > configEntry.getValue().getMaxDiffTotal()) {

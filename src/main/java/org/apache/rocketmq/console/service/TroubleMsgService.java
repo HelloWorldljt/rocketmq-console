@@ -2,7 +2,6 @@ package org.apache.rocketmq.console.service;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.xiangshang360.middleware.sdk.util.CalendarUtil;
 import org.apache.rocketmq.common.message.MessageConst;
 import org.apache.rocketmq.console.config.Params;
 import org.apache.rocketmq.console.dao.TroubleMsgMapper;
@@ -46,7 +45,7 @@ public class TroubleMsgService {
 
             for(MessageView messageView:toSaveMessages){
                 TroubleMsg msg= new TroubleMsg();
-                msg.setCreateTime(CalendarUtil.getCurrentDate());
+                msg.setCreateTime(new Date());
                 msg.setMsgBody(messageView.getMessageBody());
                 msg.setMsgProperty(JSON.toJSONString(messageView.getProperties()) );
                 msg.setSendTime(new Date(messageView.getBornTimestamp()) );

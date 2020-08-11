@@ -1,12 +1,10 @@
 package org.apache.rocketmq.console.num;
 
-import com.xiangshang360.middleware.sdk.serial.IntEnumInter;
-
 /**
  * 异常消息状态
  * @author duanz
  */
-public enum TroubleMsgStatus implements IntEnumInter<TroubleMsgStatus> {
+public enum TroubleMsgStatus{
     /**
      * 未处理
      */
@@ -24,7 +22,6 @@ public enum TroubleMsgStatus implements IntEnumInter<TroubleMsgStatus> {
         this.desc=desc;
     }
 
-    @Override
     public int intValue() {
         return this.val;
     }

@@ -1,10 +1,7 @@
 package org.apache.rocketmq.console.task;
 
-import com.xiangshang.elasticjob.lite.starter.annotation.ElasticSimpleJob;
-import com.xiangshang.elasticjob.lite.starter.job.AbstractSimpleJob;
-import com.xiangshang360.middleware.sdk.util.DateUtils;
-import io.elasticjob.lite.api.ShardingContext;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.rocketmq.common.MixAll;
 import org.apache.rocketmq.common.message.MessageConst;
 import org.apache.rocketmq.common.protocol.body.TopicList;
@@ -17,6 +14,7 @@ import org.apache.rocketmq.console.service.TopicService;
 import org.apache.rocketmq.console.service.TroubleMsgService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,14 +25,9 @@ import java.util.List;
 /**
  * 收集失败的死信消息
  *
- * @author duanz
  */
-@ElasticSimpleJob(appName = "${spring.application.name}",
-        jobClass = TroubleMsgCollectTask.class,
-        cron = "0 0/5 * * * ?",
-        description = "收集失败的死信消息/事务消息")
 @Service
-public class TroubleMsgCollectTask extends AbstractSimpleJob {
+public class TroubleMsgCollectTask {
     private Logger logger = LoggerFactory.getLogger(TroubleMsgCollectTask.class);
 
     @Resource
@@ -127,9 +120,8 @@ public class TroubleMsgCollectTask extends AbstractSimpleJob {
 
     }
 
-
-    @Override
-    public void doTask(ShardingContext content) {
+    @Scheduled(cron = "0 0/5 * * * ?")
+    public void doTask() {
         collectDeadLetter();
         collectTransMsg();
     }

@@ -5,10 +5,6 @@ spring:
     name: 'rocketmq-console'
 app:
   id: rocketmq-console
-apollo:
-  cacheDir: '/xs/webapps/rocketmq-console/apollo/'
-  bootstrap:
-    enabled: true
 logging:
   #logback配置文件
   config: classpath:logback-spring.xml
@@ -21,22 +17,35 @@ logging:
   #可选配置：TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
   level:
     root: INFO
+server:
+  port: 8081
 ---
 spring:
   profiles: local
-apollo:
-  cluster: default
-  meta: http://test.apollo.xs.sit
+  datasource:
+      url:  jdbc:mysql://119.23.248.65:3306/cms?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+      username: root
+      password: LjtYc939487@love
+      driverClassName: com.mysql.jdbc.Driver
+
+params:
+  trans-max-check-times: 15
+  batch-insert-size: 50
+rocketmq:
+  config:
+    namesrvAddr: 119.23.248.65:9876
+    isVIPChannel: false
+    dataPath: /tmp/rocketmq-console/data
+    enableDashBoardCollect: true
+    ticketKey: ticket
+    loginRequired: false
+
 ---
 spring:
   profiles: test
 
 apollo:
-  cluster: test
-  meta: http://test.apollo.xs.sit
+
 ---
 spring:
      profiles: online
-apollo:
-  cluster: default
-  meta: http://apollo.config.xs.prd
