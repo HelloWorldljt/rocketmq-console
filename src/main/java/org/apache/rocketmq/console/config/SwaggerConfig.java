@@ -22,7 +22,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket createRestApi() {
 		ApiInfo apiInfo = new ApiInfoBuilder().title("Rocketmq-Console")
-				.contact(new Contact("段子彧", "duanziyu@xiangshang360.com", "")).version("1.0").build();
+				.contact(new Contact("ZUI", "", "2012784041@qq.com")).version("1.0").build();
 		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo).select().apis(RequestHandlerSelectors.basePackage("org.apache.rocketmq.console.controller"))
 				.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class)).build();
 	}

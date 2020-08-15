@@ -86,4 +86,14 @@ public class TroubleMsgService {
     }
 
 
+    /**
+     * 查询死信消息
+     * @param topic
+     * @param msgId
+     * @param status
+     * @return
+     */
+    public List<TroubleMsg> queryTroubleMsg(String topic, String msgId, Integer status) {
+        return troubleMsgMapper.queryTroubleMsg(topic,msgId,status);
+    }
 }

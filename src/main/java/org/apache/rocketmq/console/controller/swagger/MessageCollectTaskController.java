@@ -1,7 +1,11 @@
 package org.apache.rocketmq.console.controller.swagger;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.rocketmq.console.model.TroubleMsg;
+import org.apache.rocketmq.console.service.TroubleMsgService;
+import org.apache.rocketmq.console.support.JsonResult;
 import org.apache.rocketmq.console.task.TroubleMsgCollectTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,17 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 /**
- * @author duanz
- * @date 2019-05-22
+ * @description 死信消息控制器
+ * @author lijiangtao
  */
+@Api("死信消息")
 @RestController("/messageCollect")
 public class MessageCollectTaskController {
 
 
     @Autowired
     TroubleMsgCollectTask troubleMsgCollectTask;
+    @Autowired
+    private TroubleMsgService troubleMsgService;
 
     @ApiOperation(value = "collect")
     @RequestMapping(value = "/collect",method = RequestMethod.POST)
@@ -35,4 +43,14 @@ public class MessageCollectTaskController {
     public void taskTrigger(){
         troubleMsgCollectTask.doTask();
     }
+
+
+    @ApiOperation(value = "查询死信消息")
+    @RequestMapping(value = "/queryTroubleMsg",method = RequestMethod.POST)
+    public JsonResult queryTroubleMsg(String topic,String msgId,Integer status){
+        List<TroubleMsg> troubleMsgs =  troubleMsgService.queryTroubleMsg(topic,msgId,status);
+        return new JsonResult(troubleMsgs);
+
+    }
+
 }

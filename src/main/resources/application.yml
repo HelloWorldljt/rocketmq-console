@@ -19,11 +19,15 @@ logging:
     root: INFO
 server:
   port: 8081
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mybatis/*.xml
 ---
 spring:
   profiles: local
   datasource:
-      url:  jdbc:mysql://119.23.248.65:3306/cms?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=false
+      url:  jdbc:mysql://119.23.248.65:3306/monitor?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false
       username: root
       password: LjtYc939487@love
       driverClassName: com.mysql.jdbc.Driver
@@ -39,13 +43,3 @@ rocketmq:
     enableDashBoardCollect: true
     ticketKey: ticket
     loginRequired: false
-
----
-spring:
-  profiles: test
-
-apollo:
-
----
-spring:
-     profiles: online

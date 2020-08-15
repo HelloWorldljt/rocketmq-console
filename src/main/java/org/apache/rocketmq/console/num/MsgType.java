@@ -1,7 +1,14 @@
 package org.apache.rocketmq.console.num;
 
 
-public enum MsgType{
+import org.apache.rocketmq.console.support.IntEnum;
+
+/**
+ * 死信类型
+ * @author lijiangtao
+ */
+
+public enum MsgType implements IntEnum {
 
     /**
      * 死信
@@ -13,17 +20,18 @@ public enum MsgType{
     TRANS_LETTER(2,"事务消息");
 
 
-    private int val;
+    private int code;
     private String desc;
 
-    MsgType(int val, String desc) {
-        this.val=val;
+    MsgType(int code, String desc) {
+        this.code=code;
         this.desc=desc;
     }
 
 
-    public int intValue() {
-        return this.val;
+    @Override
+    public int getCode() {
+        return this.code;
     }
     @Override
     public String toString(){

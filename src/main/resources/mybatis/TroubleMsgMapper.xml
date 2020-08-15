@@ -15,6 +15,11 @@
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
+
+    <sql id="baseColumn" >
+            id,msg_id,`type`,topic,msg_property,msg_body,send_time,`status`,create_time,update_time
+    </sql>
+
     <insert id="insert" useGeneratedKeys="true" keyColumn="id">
         insert into trouble_msg(
                                 id,
@@ -75,6 +80,21 @@
     </insert>
     <select id="queryIfExist" resultType="java.lang.Integer">
         select count(1) from trouble_msg where msg_id=#{msgId} and topic=#{topic}
+    </select>
+
+    <select id="queryTroubleMsg" resultMap="troubleMsg">
+        select <include refid="baseColumn"/> from trouble_msg
+        <where>
+            <if test="topic != null and topic != '' ">
+                topic = #{topic,jdbcType=VARCHAR}
+            </if>
+            <if test="msgId != null and msgId != '' ">
+                and msg_id = #{msgId,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and `status` = #{status,jdbcType=INTEGER}
+            </if>
+        </where>
     </select>
 
 
