@@ -14,6 +14,7 @@ public class AutoEnumHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
     private BaseTypeHandler typeHandler = null;
 
     /**
+     * 为什么需要提供一个构造器？？？？
      * 创建一个泛型类型处理器，它可以处理多于一个类。为达到此目的， 需要增加一个接收该类作为参数的构造器，
      * 这样在构造一个类型处理器的时候 MyBatis 就会传入一个具体的类
      * @param type
@@ -26,6 +27,7 @@ public class AutoEnumHandler<E extends Enum<E>> extends BaseTypeHandler<E> {
             //如果继承了 intEnum 则返回自定义处理器
             typeHandler = new IntEnumHandler(type);
         }else {
+            //如果不是，返回默认
             typeHandler = new EnumTypeHandler(type);
         }
     }

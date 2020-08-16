@@ -43,3 +43,8 @@ rocketmq:
     enableDashBoardCollect: true
     ticketKey: ticket
     loginRequired: false
+    #集群监控配置小于配置值发出预警
+    monitor:
+      broker-nums: 2 #broker 实例数量
+      namesrv-nums: 1 #namesrv 实例数量
+      disk-full-rate: 85 #磁盘空间使用阈值

@@ -5,5 +5,8 @@ package org.apache.rocketmq.console.support;
  * @author lijiangtao
  */
 public interface IntEnum {
+    /**
+     * 获取枚举对应数值
+     */
     int getCode();
 }

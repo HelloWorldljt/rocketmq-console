@@ -17,6 +17,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
 
+/**
+ * 集群错误信息收集服务
+ * @author lijiangtao
+ */
 @Service
 public class TroubleMsgService {
     @Resource

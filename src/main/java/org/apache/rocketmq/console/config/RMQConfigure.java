@@ -16,13 +16,14 @@
  */
 package org.apache.rocketmq.console.config;
 
-import java.io.File;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.common.MixAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+
+import java.io.File;
 
 import static org.apache.rocketmq.client.ClientConfig.SEND_MESSAGE_WITH_VIP_CHANNEL_PROPERTY;
 
@@ -42,6 +43,20 @@ public class RMQConfigure {
     private boolean enableDashBoardCollect;
 
     private String msgTrackTopicName;
+    /**
+     * broker 实例数量
+     */
+    private Integer monitorBrokerNums;
+    /**
+     * namesrv 实例数量
+     */
+    private Integer monitorNamesrvNums;
+
+    /**
+     * 磁盘空间使用阈值
+     */
+    private Integer monitorDiskFullRate;
+
 
     public String getNamesrvAddr() {
         return namesrvAddr;
@@ -93,5 +108,29 @@ public class RMQConfigure {
 
     public void setMsgTrackTopicName(String msgTrackTopicName) {
         this.msgTrackTopicName = msgTrackTopicName;
+    }
+
+    public Integer getMonitorBrokerNums() {
+        return monitorBrokerNums;
+    }
+
+    public void setMonitorBrokerNums(Integer monitorBrokerNums) {
+        this.monitorBrokerNums = monitorBrokerNums;
+    }
+
+    public Integer getMonitorNamesrvNums() {
+        return monitorNamesrvNums;
+    }
+
+    public void setMonitorNamesrvNums(Integer monitorNamesrvNums) {
+        this.monitorNamesrvNums = monitorNamesrvNums;
+    }
+
+    public Integer getMonitorDiskFullRate() {
+        return monitorDiskFullRate;
+    }
+
+    public void setMonitorDiskFullRate(Integer monitorDiskFullRate) {
+        this.monitorDiskFullRate = monitorDiskFullRate;
     }
 }
