@@ -22,9 +22,10 @@ import org.apache.rocketmq.common.protocol.route.BrokerData;
 import org.apache.rocketmq.console.config.RMQConfigure;
 import org.apache.rocketmq.console.model.ConsumerMonitorConfig;
 import org.apache.rocketmq.console.model.GroupConsumeInfo;
+import org.apache.rocketmq.console.num.ClusterInfoType;
 import org.apache.rocketmq.console.service.ConsumerService;
 import org.apache.rocketmq.console.service.MonitorService;
-import org.apache.rocketmq.console.service.impl.TroubleCluterService;
+import org.apache.rocketmq.console.service.impl.TroubleClusterService;
 import org.apache.rocketmq.console.util.JsonUtil;
 import org.apache.rocketmq.tools.admin.MQAdminExt;
 import org.slf4j.Logger;
@@ -63,7 +64,7 @@ public class MonitorTask{
     @Resource
     private RMQConfigure rmqConfigure;
     @Resource
-    private TroubleCluterService troubleCluterService;
+    private TroubleClusterService troubleCluterService;
 
     /**
      * 监控消息对接数量和consumer 实例数量
@@ -107,7 +108,7 @@ public class MonitorTask{
                 String remark = String.format(brokerRemarkTemplate, liveBrokerNum, rmqConfigure.getMonitorBrokerNums());
                 logger.warn(remark);
                 //插入数据库，预警系统扫描预警
-                troubleCluterService.insert(JsonUtil.obj2String(brokerAddrTable),remark);
+                troubleCluterService.insert(ClusterInfoType.BROKER_CLUSTOR,JsonUtil.obj2String(brokerAddrTable),remark);
             }
 
 

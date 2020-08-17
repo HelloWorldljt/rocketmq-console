@@ -1,6 +1,6 @@
 package org.apache.rocketmq.console.service.impl;
 
-import org.apache.rocketmq.console.dao.TroubleCluterMapper;
+import org.apache.rocketmq.console.dao.TroubleClusterMapper;
 import org.apache.rocketmq.console.model.TroubleCluster;
 import org.apache.rocketmq.console.num.ClusterInfoType;
 import org.apache.rocketmq.console.num.TroubleClusterStatus;
@@ -11,10 +11,10 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 @Service
-public class TroubleCluterService{
+public class TroubleClusterService {
 
     @Resource
-    private TroubleCluterMapper troubleCluterMapper;
+    private TroubleClusterMapper troubleCluterMapper;
 
     
     public int deleteByPrimaryKey(Integer id) {

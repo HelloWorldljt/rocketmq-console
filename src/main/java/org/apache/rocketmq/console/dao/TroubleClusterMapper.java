@@ -2,7 +2,7 @@ package org.apache.rocketmq.console.dao;
 
 import org.apache.rocketmq.console.model.TroubleCluster;
 
-public interface TroubleCluterMapper {
+public interface TroubleClusterMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(TroubleCluster record);

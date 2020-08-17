@@ -13,8 +13,8 @@
 		<setting name="logImpl" value="STDOUT_LOGGING"/>
 	</settings>
 
-	<typeHandlers>
+<!--	<typeHandlers>
 		<typeHandler javaType="org.apache.rocketmq.console.num.TroubleMsgStatus" handler="org.apache.rocketmq.console.support.IntEnumHandler" />
 		<typeHandler javaType="org.apache.rocketmq.console.num.MsgType" handler="org.apache.rocketmq.console.support.IntEnumHandler" />
-	</typeHandlers>
+	</typeHandlers>-->
 </configuration>

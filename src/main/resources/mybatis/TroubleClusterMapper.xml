@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.apache.rocketmq.console.dao.TroubleCluterMapper">
+<mapper namespace="org.apache.rocketmq.console.dao.TroubleClusterMapper">
   <resultMap id="BaseResultMap" type="org.apache.rocketmq.console.model.TroubleCluster">
     <!--@mbg.generated-->
-    <!--@Table trouble_cluter-->
+    <!--@Table trouble_cluster-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="type" jdbcType="TINYINT" property="type" />
     <result column="details" jdbcType="VARCHAR" property="details" />
@@ -19,17 +19,17 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from trouble_cluter
+    from trouble_cluster
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--@mbg.generated-->
-    delete from trouble_cluter
+    delete from trouble_cluster
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="org.apache.rocketmq.console.model.TroubleCluster">
     <!--@mbg.generated-->
-    insert into trouble_cluter (id, `type`, details, 
+    insert into trouble_cluster (id, `type`, details,
       `status`, create_time, remark
       )
     values (#{id,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{details,jdbcType=VARCHAR}, 
@@ -38,7 +38,7 @@
   </insert>
   <insert id="insertSelective" parameterType="org.apache.rocketmq.console.model.TroubleCluster">
     <!--@mbg.generated-->
-    insert into trouble_cluter
+    insert into trouble_cluster
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -82,7 +82,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="org.apache.rocketmq.console.model.TroubleCluster">
     <!--@mbg.generated-->
-    update trouble_cluter
+    update trouble_cluster
     <set>
       <if test="type != null">
         `type` = #{type,jdbcType=TINYINT},
@@ -104,7 +104,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="org.apache.rocketmq.console.model.TroubleCluster">
     <!--@mbg.generated-->
-    update trouble_cluter
+    update trouble_cluster
     set `type` = #{type,jdbcType=TINYINT},
       details = #{details,jdbcType=VARCHAR},
       `status` = #{status,jdbcType=TINYINT},
